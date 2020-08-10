@@ -1,0 +1,12 @@
+<div class="form-group">
+  <label><ng-content></ng-content></label>
+  <input
+    [type]="_type"
+    class="form-control"
+    [formControl]="ngControl.control"
+    [class.is-invalid]="ngControl.invalid"
+  />
+  <div class="invalid-feedback" *ngIf="ngControl.hasError('required')">
+    (*) Required
+  </div>
+</div>

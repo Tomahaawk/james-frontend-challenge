@@ -1,0 +1,23 @@
+@import "../../../sass/variables";
+
+.form-group {
+  width: 100%;
+  & label {
+    font-size: 1.4rem;
+    color: $main-text;
+    font-weight: 500;
+  }
+
+  & .form-control {
+    display: block;
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 10px;
+    color: $default-text;
+    outline: none;
+    border: 1px solid rgba($default-text, 0.1);
+    background-color: $background;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+}

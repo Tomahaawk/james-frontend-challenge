@@ -1,0 +1,62 @@
+<div class="establishment-details">
+  <div class="form-header">
+    <span>&larr;</span>
+    <img [src]="establishment?.picture" alt="Establishment Logo" />
+    <div class="name">
+      <span>{{ establishment?.name }}</span>
+      <div>ID: {{ establishment?.id }}</div>
+    </div>
+  </div>
+  <form
+    [formGroup]="establishmentForm"
+    (ngSubmit)="saveData(establishmentForm.value)"
+  >
+    <h2>Informações Básicas</h2>
+    <hr />
+    <div class="form-row">
+      <app-input formControlName="name">
+        Nome
+      </app-input>
+      <app-input formControlName="city">
+        Cidade
+      </app-input>
+      <app-input formControlName="address">
+        Endereço
+      </app-input>
+    </div>
+    <h2>Financeiro</h2>
+    <hr />
+    <div class="form-row">
+      <app-input formControlName="bank">
+        Banco
+      </app-input>
+      <app-input formControlName="account_type">
+        Tipo de conta
+      </app-input>
+      <app-input formControlName="cpf_cnpj">
+        CPF / CNPJ
+      </app-input>
+    </div>
+    <div class="form-row">
+      <div class="multiple-field">
+        <app-input formControlName="agency" [type]="NUMBER">
+          Agência
+        </app-input>
+        <app-input formControlName="agency_digit"> </app-input>
+      </div>
+      <div class="multiple-field">
+        <app-input formControlName="account_number">
+          Conta
+        </app-input>
+        <app-input formControlName="account_number_digit"> </app-input>
+      </div>
+      <app-input formControlName="automated_withdraw">
+        Saque Automatico?
+      </app-input>
+    </div>
+    <div class="form-footer">
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
+  {{ establishmentForm.value | json }}
+</div>

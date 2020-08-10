@@ -1,0 +1,70 @@
+@import "../../../sass/variables";
+
+.establishment-details {
+  padding: 1.5rem;
+  background-color: $white;
+  box-shadow: $box-shadow;
+
+  & .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    margin: 15px 0;
+
+    & .multiple-field {
+      display: grid;
+      grid-template-columns: 0.4fr 0.2fr;
+      align-items: end;
+      grid-gap: 10px;
+    }
+  }
+
+  & .form-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+
+    & > span {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-right: 2rem;
+    }
+
+    & > img {
+      height: 64px;
+      width: 64px;
+      object-fit: cover;
+      margin-right: 2rem;
+    }
+
+    & .name {
+      & > span {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: $main-text;
+      }
+
+      & > div {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: $default-text;
+      }
+    }
+  }
+
+  & .form-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  & h2 {
+    font-weight: 500;
+    color: $main-text;
+  }
+
+  & hr {
+    border-style: solid;
+    border: 1px solid rgba($default-text, 0.1);
+    margin: 15px 0;
+  }
+}

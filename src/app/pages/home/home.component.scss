@@ -1,0 +1,11 @@
+.content {
+  display: flex;
+  font-size: 1.6rem;
+
+  .establishments-list {
+    display: grid;
+    grid-auto-flow: row;
+    grid-gap: 7px;
+    width: 100%;
+  }
+}
