@@ -2,13 +2,13 @@
 
 .form-group {
   width: 100%;
-  & label {
+  label {
     font-size: 1.4rem;
     color: $main-text;
     font-weight: 500;
   }
 
-  & .form-control {
+  .form-control {
     display: block;
     width: 100%;
     font-size: 1.6rem;

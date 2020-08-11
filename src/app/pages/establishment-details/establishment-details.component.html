@@ -1,6 +1,6 @@
 <div class="establishment-details">
   <div class="form-header">
-    <span>&larr;</span>
+    <span>&#10141;</span>
     <img [src]="establishment?.picture" alt="Establishment Logo" />
     <div class="name">
       <span>{{ establishment?.name }}</span>
@@ -42,17 +42,24 @@
         <app-input formControlName="agency" [type]="NUMBER">
           Agência
         </app-input>
-        <app-input formControlName="agency_digit"> </app-input>
+        <app-input formControlName="agency_digit" [type]="NUMBER"> </app-input>
       </div>
       <div class="multiple-field">
-        <app-input formControlName="account_number">
+        <app-input formControlName="account_number" [type]="NUMBER">
           Conta
         </app-input>
-        <app-input formControlName="account_number_digit"> </app-input>
+        <app-input formControlName="account_number_digit" [type]="NUMBER">
+        </app-input>
       </div>
-      <app-input formControlName="automated_withdraw">
-        Saque Automatico?
-      </app-input>
+      <div class="custom-select">
+        <label class="label"> Saque Automatico? </label>
+        <ng-select
+          id="withdraw"
+          [options]="withdrawOptions"
+          [styleGuide]="selectStyleGuide"
+          [formControl]="establishmentForm.get('automated_withdraw')"
+        ></ng-select>
+      </div>
     </div>
     <div class="form-footer">
       <button type="submit">Salvar</button>

@@ -1,0 +1,44 @@
+@import "./variables";
+
+.dropdown-wrapper {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: $default-text;
+  outline: none;
+  border: 1px solid rgba($default-text, 0.1);
+  background-color: $background;
+  font-weight: 500;
+  border-radius: 6px;
+
+  > input {
+    background-color: transparent;
+    color: $default-text;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+
+  .dropdown {
+    background-color: $background;
+    box-shadow: $box-shadow;
+
+    .option:hover {
+      color: #d15947;
+    }
+
+    .option {
+      font-weight: 500;
+      font-size: 1.6rem;
+      padding: 1rem;
+      text-decoration: none;
+    }
+  }
+}
+
+.caret {
+  &::after {
+    content: "▼";
+    text-align: center;
+    font-size: 1.3rem;
+  }
+}

@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.establishmetsService
-      .getEstablishments()
-      .subscribe((res) => (this.establishments = res));
+    this.establishmetsService.$establishments.subscribe((establishments) => {
+      this.establishments = establishments;
+    });
   }
 
   navigate(item: Establishment): void {

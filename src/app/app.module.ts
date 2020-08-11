@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgSelectModule } from 'ng-custom-select';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { HomeComponent } from './pages/home/home.component';
 import { EstablishmentDetailsComponent } from './pages/establishment-details/establishment-details.component';
@@ -26,6 +28,8 @@ import { InputComponent } from './components/input/input.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

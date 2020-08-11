@@ -14,7 +14,19 @@ export class EstablishmentDetailsComponent implements OnInit {
   establishment: Establishment;
   establishmentForm: FormGroup;
 
-  private readonly NUMBER = FieldType.NUMBER;
+  readonly NUMBER = FieldType.NUMBER;
+
+  withdrawOptions: { name: string; value: boolean }[] = [
+    { name: 'Sim', value: true },
+    { name: 'Não', value: false },
+  ];
+
+  selectStyleGuide = {
+    caretClass: 'caret',
+    selectBoxClass: 'dropdown-wrapper',
+    selectMenuClass: 'dropdown',
+    optionsClass: 'option',
+  };
 
   constructor(
     private establishmetsService: EstablishmentsService,
@@ -33,6 +45,7 @@ export class EstablishmentDetailsComponent implements OnInit {
 
   initForm() {
     this.establishmentForm = this.fb.group({
+      id: ['', [Validators.required]],
       name: ['', [Validators.required]],
       city: ['', [Validators.required]],
       address: ['', [Validators.required]],
@@ -49,13 +62,18 @@ export class EstablishmentDetailsComponent implements OnInit {
   }
 
   getEstablishmentData(id): void {
-    this.establishmetsService.getEstablishmentById(id).subscribe((res) => {
-      console.log(res);
+    this.establishmetsService.getEstablishmentById(id).then((res) => {
       this.establishment = res;
+      this.establishmentForm.patchValue(this.establishment);
     });
   }
 
   saveData(values) {
-    console.log(values);
+    const updatedValues = { ...this.establishment, ...values };
+    this.establishmetsService
+      .saveEstablishmentData(updatedValues)
+      .then((key) => {
+        console.log(key);
+      });
   }
 }
