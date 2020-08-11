@@ -4,6 +4,9 @@ import { Establishment } from 'src/app/model/establishment';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FieldType } from '../../model/field-type.enum';
+import { Subject } from 'rxjs';
+import { Patterns } from 'src/app/utils/patterns';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-establishment-details',
@@ -11,10 +14,12 @@ import { FieldType } from '../../model/field-type.enum';
   styleUrls: ['./establishment-details.component.scss'],
 })
 export class EstablishmentDetailsComponent implements OnInit {
+  readonly NUMBER = FieldType.NUMBER;
+
   establishment: Establishment;
   establishmentForm: FormGroup;
 
-  readonly NUMBER = FieldType.NUMBER;
+  cpfCnpjMask: Subject<string> = new Subject();
 
   withdrawOptions: { name: string; value: boolean }[] = [
     { name: 'Sim', value: true },
@@ -31,7 +36,8 @@ export class EstablishmentDetailsComponent implements OnInit {
   constructor(
     private establishmetsService: EstablishmentsService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +65,10 @@ export class EstablishmentDetailsComponent implements OnInit {
       account_number_digit: [''],
       automated_withdraw: [false],
     });
+
+    this.establishmentForm.get('cpf_cnpj').valueChanges.subscribe((value) => {
+      this.onChangeCpfCnpj(value);
+    });
   }
 
   getEstablishmentData(id): void {
@@ -75,5 +85,18 @@ export class EstablishmentDetailsComponent implements OnInit {
       .then((key) => {
         console.log(key);
       });
+  }
+
+  onChangeCpfCnpj(value: string) {
+    value = value.replace(Patterns.DIGITS, '');
+    if (value.length <= 11) {
+      this.cpfCnpjMask.next('000.000.000-000');
+    } else {
+      this.cpfCnpjMask.next('00.000.000/0000-00');
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

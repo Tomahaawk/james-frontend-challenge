@@ -1,6 +1,6 @@
 <div class="establishment-details">
   <div class="form-header">
-    <span>&#10141;</span>
+    <span (click)="goBack()">&#10141;</span>
     <img [src]="establishment?.picture" alt="Establishment Logo" />
     <div class="name">
       <span>{{ establishment?.name }}</span>
@@ -33,22 +33,22 @@
       <app-input formControlName="account_type">
         Tipo de conta
       </app-input>
-      <app-input formControlName="cpf_cnpj">
+      <app-input formControlName="cpf_cnpj" [mask]="cpfCnpjMask">
         CPF / CNPJ
       </app-input>
     </div>
     <div class="form-row">
       <div class="multiple-field">
-        <app-input formControlName="agency" [type]="NUMBER">
+        <app-input formControlName="agency" [mask]="'0000'">
           Agência
         </app-input>
-        <app-input formControlName="agency_digit" [type]="NUMBER"> </app-input>
+        <app-input formControlName="agency_digit" [mask]="'0'"> </app-input>
       </div>
       <div class="multiple-field">
-        <app-input formControlName="account_number" [type]="NUMBER">
+        <app-input formControlName="account_number" [mask]="'00000000'">
           Conta
         </app-input>
-        <app-input formControlName="account_number_digit" [type]="NUMBER">
+        <app-input formControlName="account_number_digit" [mask]="'0'">
         </app-input>
       </div>
       <div class="custom-select">

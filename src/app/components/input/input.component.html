@@ -5,7 +5,7 @@
     class="form-control"
     [formControl]="ngControl.control"
     [class.is-invalid]="ngControl.invalid"
-    mask="(00) 0000-0000"
+    mask="{{!async ? _mask : (_mask | async)}}"
   />
   <div class="invalid-feedback" *ngIf="ngControl.hasError('required')">
     (*) Required
