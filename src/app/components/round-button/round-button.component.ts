@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'james-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+  selector: 'round-button',
+  templateUrl: './round-button.component.html',
+  styleUrls: ['./round-button.component.scss'],
 })
-export class ButtonComponent implements OnInit {
+export class RoundButtonComponent implements OnInit {
   @HostBinding('class.james-button__green') isPrimary: boolean;
   @HostBinding('class.james-button__default') isDefault: boolean;
 

@@ -44,19 +44,18 @@ export class EstablishmentDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.route.params.subscribe(({ id }) => {
+    this.route.params.subscribe(({ id }: { id: string }) => {
       if (id) {
         this.getEstablishmentData(id);
       }
     });
   }
 
-  initForm() {
+  initForm(): void {
     this.establishmentForm = this.fb.group({
       id: ['', [Validators.required]],
       name: ['', [Validators.required]],
@@ -89,8 +88,8 @@ export class EstablishmentDetailsComponent implements OnInit {
     });
   }
 
-  saveData(values) {
-    console.log(this.establishmentForm);
+  saveData(values): void {
+    // console.log(this.establishmentForm);
     Swal.fire({
       icon: 'question',
       title: 'Deseja salvar as alterações?',
@@ -112,7 +111,7 @@ export class EstablishmentDetailsComponent implements OnInit {
     });
   }
 
-  onChangeCpfCnpj(value: string) {
+  onChangeCpfCnpj(value: string): void {
     value = value.replace(Patterns.DIGITS, '');
     if (value.length < 12) {
       this.cpfCnpjMask.next('000.000.000-00');
@@ -121,7 +120,7 @@ export class EstablishmentDetailsComponent implements OnInit {
     }
   }
 
-  goBack() {
+  goBack(): void {
     this.router.navigateByUrl('/home');
   }
 }

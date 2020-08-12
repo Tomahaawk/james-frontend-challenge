@@ -1,9 +1,9 @@
-<div class="content">
-  <div class="establishments-list">
-    <app-establishment-card
+<div class="home">
+  <div class="home__establishments-list">
+    <establishment-card
       *ngFor="let item of establishments"
       [establishment]="item"
       (select)="navigate(item)"
-    ></app-establishment-card>
+    ></establishment-card>
   </div>
 </div>

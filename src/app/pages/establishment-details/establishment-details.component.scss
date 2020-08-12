@@ -4,6 +4,8 @@
   padding: 1.5rem;
   background-color: $white;
   box-shadow: $box-shadow;
+  border-radius: $br6;
+  padding: 30px;
 
   .form {
     &__row {
@@ -29,7 +31,7 @@
     label.label {
       font-size: 1.4rem;
       color: $main-text;
-      font-weight: 500;
+      font-weight: $font-medium;
     }
   }
 
@@ -64,20 +66,20 @@
     .name {
       > span {
         font-size: 1.8rem;
-        font-weight: bold;
+        font-weight: $font-bold;
         color: $main-text;
       }
 
       > div {
         font-size: 1.4rem;
-        font-weight: 500;
+        font-weight: $font-medium;
         color: $default-text;
       }
     }
   }
 
   h2 {
-    font-weight: 500;
+    font-weight: $font-medium;
     color: $main-text;
     font-size: 1.8rem;
   }
@@ -91,6 +93,6 @@
   .custom-select .label {
     font-size: 1.4rem;
     color: $main-text;
-    font-weight: 500;
+    font-weight: $font-medium;
   }
 }

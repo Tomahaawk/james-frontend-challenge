@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Establishment } from 'src/app/model/establishment';
 
 @Component({
-  selector: 'app-establishment-card',
+  selector: 'establishment-card',
   templateUrl: './establishment-card.component.html',
   styleUrls: ['./establishment-card.component.scss'],
 })

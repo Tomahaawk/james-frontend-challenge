@@ -4,7 +4,7 @@
   width: 100%;
   padding: 0 10px;
   height: 80px;
-  border-radius: 6px;
+  border-radius: $br6;
 
   display: grid;
   grid-auto-flow: column;
@@ -20,7 +20,7 @@
     height: 64px;
     width: 64px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: $br6;
   }
 
   & > div {
@@ -29,7 +29,7 @@
 
   &__name {
     color: $main-text;
-    font-weight: 600;
+    font-weight: $font-bold;
     font-size: 1.8rem;
   }
 

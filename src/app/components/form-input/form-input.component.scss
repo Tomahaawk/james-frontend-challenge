@@ -5,7 +5,7 @@
   label {
     font-size: 1.4rem;
     color: $main-text;
-    font-weight: 500;
+    font-weight: $font-medium;
   }
 
   .form-control {
@@ -17,8 +17,8 @@
     outline: none;
     border: 1px solid rgba($default-text, 0.1);
     background-color: $background;
-    font-weight: 500;
-    border-radius: 6px;
+    font-weight: $font-medium;
+    border-radius: $br6;
 
     &.ng-invalid {
       border-color: red;

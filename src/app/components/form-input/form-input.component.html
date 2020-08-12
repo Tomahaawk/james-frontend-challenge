@@ -4,7 +4,7 @@
     [type]="_type"
     class="form-control"
     [formControl]="ngControl.control"
-    [mask]="!async ? _mask : (_mask | async)"
+    [mask]="!_async ? _mask : (_mask | async)"
   />
   <div class="invalid-feedback" *ngIf="ngControl.hasError('required')">
     (*) Obrigatorio

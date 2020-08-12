@@ -17,8 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { EstablishmentDetailsComponent } from './pages/establishment-details/establishment-details.component';
 
 import { EstablishmentCardComponent } from './components/establishment-card/establishment-card.component';
-import { InputComponent } from './components/input/input.component';
-import { ButtonComponent } from './components/button/button.component';
+import { FormInputComponent } from './components/form-input/form-input.component';
+import { RoundButtonComponent } from './components/round-button/round-button.component';
 import { AppConfigModule } from './appconfig.module';
 @NgModule({
   declarations: [
@@ -26,8 +26,8 @@ import { AppConfigModule } from './appconfig.module';
     HomeComponent,
     EstablishmentDetailsComponent,
     EstablishmentCardComponent,
-    InputComponent,
-    ButtonComponent,
+    FormInputComponent,
+    RoundButtonComponent,
   ],
   imports: [
     BrowserModule,
