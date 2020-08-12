@@ -1,0 +1,46 @@
+@import "../../../sass/variables";
+
+:host {
+  > button {
+    padding: 15px 40px;
+    border-radius: 26px;
+    display: flex;
+    box-shadow: $box-shadow;
+    // cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+
+  &.james-button {
+    &__green {
+      button {
+        background-color: $light-green;
+        color: $white;
+      }
+    }
+
+    &__default {
+      button {
+        background-color: $white;
+        color: $default-text;
+      }
+    }
+  }
+}

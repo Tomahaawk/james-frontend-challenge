@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { EstablishmentsService } from 'src/app/services/establishments.service';
 import { Establishment } from 'src/app/model/establishment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FieldType } from '../../model/field-type.enum';
 import { Subject } from 'rxjs';
 import { Patterns } from 'src/app/utils/patterns';
-import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-establishment-details',
   templateUrl: './establishment-details.component.html',
   styleUrls: ['./establishment-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EstablishmentDetailsComponent implements OnInit {
   readonly NUMBER = FieldType.NUMBER;
@@ -22,8 +28,8 @@ export class EstablishmentDetailsComponent implements OnInit {
   cpfCnpjMask: Subject<string> = new Subject();
 
   withdrawOptions: { name: string; value: boolean }[] = [
-    { name: 'Sim', value: true },
     { name: 'Não', value: false },
+    { name: 'Sim', value: true },
   ];
 
   selectStyleGuide = {
@@ -37,16 +43,17 @@ export class EstablishmentDetailsComponent implements OnInit {
     private establishmetsService: EstablishmentsService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private location: Location,
+    private router: Router,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
     this.route.params.subscribe(({ id }) => {
       if (id) {
         this.getEstablishmentData(id);
       }
     });
-    this.initForm();
   }
 
   initForm() {
@@ -56,6 +63,7 @@ export class EstablishmentDetailsComponent implements OnInit {
       city: ['', [Validators.required]],
       address: ['', [Validators.required]],
       phone: ['', [Validators.required]],
+      email: [''],
       bank: [''],
       account_type: [''],
       cpf_cnpj: [''],
@@ -63,7 +71,10 @@ export class EstablishmentDetailsComponent implements OnInit {
       agency_digit: [''],
       account_number: [''],
       account_number_digit: [''],
-      automated_withdraw: [false],
+      automated_withdraw: [
+        { name: 'Não', value: false },
+        [Validators.required],
+      ],
     });
 
     this.establishmentForm.get('cpf_cnpj').valueChanges.subscribe((value) => {
@@ -79,24 +90,38 @@ export class EstablishmentDetailsComponent implements OnInit {
   }
 
   saveData(values) {
-    const updatedValues = { ...this.establishment, ...values };
-    this.establishmetsService
-      .saveEstablishmentData(updatedValues)
-      .then((key) => {
-        console.log(key);
-      });
+    console.log(this.establishmentForm);
+    Swal.fire({
+      icon: 'question',
+      title: 'Deseja salvar as alterações?',
+      showCancelButton: true,
+      cancelButtonText: 'Fechar',
+      confirmButtonText: 'Confirmar',
+    }).then((action) => {
+      if (action.value) {
+        const updatedValues = { ...this.establishment, ...values };
+        this.establishmetsService
+          .saveEstablishmentData(updatedValues)
+          .then((key) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Alterações salvas!',
+            });
+          });
+      }
+    });
   }
 
   onChangeCpfCnpj(value: string) {
     value = value.replace(Patterns.DIGITS, '');
-    if (value.length <= 11) {
-      this.cpfCnpjMask.next('000.000.000-000');
+    if (value.length < 12) {
+      this.cpfCnpjMask.next('000.000.000-00');
     } else {
       this.cpfCnpjMask.next('00.000.000/0000-00');
     }
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigateByUrl('/home');
   }
 }

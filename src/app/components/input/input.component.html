@@ -4,10 +4,9 @@
     [type]="_type"
     class="form-control"
     [formControl]="ngControl.control"
-    [class.is-invalid]="ngControl.invalid"
-    mask="{{!async ? _mask : (_mask | async)}}"
+    [mask]="!async ? _mask : (_mask | async)"
   />
   <div class="invalid-feedback" *ngIf="ngControl.hasError('required')">
-    (*) Required
+    (*) Obrigatorio
   </div>
 </div>

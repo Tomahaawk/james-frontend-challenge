@@ -19,5 +19,9 @@
     background-color: $background;
     font-weight: 500;
     border-radius: 6px;
+
+    &.ng-invalid {
+      border-color: red;
+    }
   }
 }

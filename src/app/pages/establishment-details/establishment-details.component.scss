@@ -5,36 +5,53 @@
   background-color: $white;
   box-shadow: $box-shadow;
 
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
-    margin: 15px 0;
-
-    .multiple-field {
+  .form {
+    &__row {
       display: grid;
-      grid-template-columns: 0.4fr 0.2fr;
-      align-items: end;
-      grid-gap: 10px;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      margin: 15px 0;
+
+      &--multiple {
+        display: grid;
+        grid-template-columns: 0.4fr 0.2fr;
+        align-items: end;
+        grid-gap: 10px;
+      }
     }
 
-    .custom-select .label {
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 6rem;
+    }
+
+    label.label {
       font-size: 1.4rem;
       color: $main-text;
       font-weight: 500;
     }
   }
 
-  .form-header {
+  .establishment-details__header {
     display: flex;
     align-items: center;
     margin-bottom: 4rem;
 
-    > span {
-      font-size: 3rem;
-      font-weight: bold;
+    button {
       margin-right: 2rem;
-      transform: rotate(180deg);
+      background: none;
+      border: none;
+      border-radius: 50%;
+      height: 36px;
+      width: 36px;
+      transition: all 0.3s;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        background-color: $shadow;
+      }
     }
 
     > img {
@@ -59,19 +76,21 @@
     }
   }
 
-  .form-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-
   h2 {
     font-weight: 500;
     color: $main-text;
+    font-size: 1.8rem;
   }
 
   hr {
     border-style: solid;
     border: 1px solid rgba($default-text, 0.1);
     margin: 15px 0;
+  }
+
+  .custom-select .label {
+    font-size: 1.4rem;
+    color: $main-text;
+    font-weight: 500;
   }
 }

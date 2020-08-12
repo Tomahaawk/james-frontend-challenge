@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { IdbService } from './idb.service';
 import { Establishment } from 'src/app/model/establishment';
 import { openDB, deleteDB, wrap, unwrap, IDBPDatabase } from 'idb';
+import { Stores } from '../model/db-stores.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -16,24 +18,21 @@ export class EstablishmentsService {
     this._establishments
   );
 
-  constructor(private http: HttpClient) {
-    this.openDatabase()
-      .then(() => {
-        this.getAllValues().then((dbValues) => {
-          // Since we are working with static data, no need to overcomplicate things.
-          // If the local database is empty, we populate it with the server data.
-          if (!dbValues.length) {
-            this.getEstablishments();
-            this.$establishments.subscribe((establishments) => {
-              this.insertValues(establishments);
-            });
-          } else {
-            this._establishments = dbValues;
-            this.$establishments.next(this._establishments);
-          }
+  constructor(private http: HttpClient, private idbService: IdbService) {
+    this.db = idbService.db;
+    this.getAllValues().then((dbValues) => {
+      // Since we are working with static data, no need to overcomplicate things.
+      // If the local database is empty, we populate it with the server data.
+      if (!dbValues.length) {
+        this.getEstablishments();
+        this.$establishments.subscribe((establishments) => {
+          this.insertValues(establishments);
         });
-      })
-      .catch((err) => console.error(err));
+      } else {
+        this._establishments = dbValues;
+        this.$establishments.next(this._establishments);
+      }
+    });
   }
 
   private getEstablishments(): void {
@@ -45,17 +44,6 @@ export class EstablishmentsService {
         this.$establishments.next(res);
         this._establishments = res;
       });
-  }
-
-  private async openDatabase(): Promise<void> {
-    this.db = await openDB('james-challenge', 1, {
-      upgrade(db) {
-        db.createObjectStore(Stores.ESTABLISHMENTS, { keyPath: 'id' });
-      },
-      terminated() {
-        alert('Something went wrong!');
-      },
-    });
   }
 
   private insertValues(establishments: Establishment[]): void {
@@ -89,8 +77,4 @@ export class EstablishmentsService {
     let transaction = this.db.transaction(Stores.ESTABLISHMENTS, 'readwrite');
     return transaction.store.put(values);
   }
-}
-
-enum Stores {
-  ESTABLISHMENTS = 'establishments',
 }

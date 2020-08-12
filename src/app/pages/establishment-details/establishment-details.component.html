@@ -1,6 +1,8 @@
 <div class="establishment-details">
-  <div class="form-header">
-    <span (click)="goBack()">&#10141;</span>
+  <div class="establishment-details__header">
+    <button (click)="goBack()" type="button">
+      <fa-icon [icon]="['fas', 'arrow-left']" size="2x"></fa-icon>
+    </button>
     <img [src]="establishment?.picture" alt="Establishment Logo" />
     <div class="name">
       <span>{{ establishment?.name }}</span>
@@ -8,12 +10,13 @@
     </div>
   </div>
   <form
+    class="form"
     [formGroup]="establishmentForm"
     (ngSubmit)="saveData(establishmentForm.value)"
   >
     <h2>Informações Básicas</h2>
     <hr />
-    <div class="form-row">
+    <div class="form__row">
       <app-input formControlName="name">
         Nome
       </app-input>
@@ -24,9 +27,17 @@
         Endereço
       </app-input>
     </div>
+    <div class="form__row">
+      <app-input formControlName="phone">
+        Telefone
+      </app-input>
+      <app-input formControlName="email">
+        Email
+      </app-input>
+    </div>
     <h2>Financeiro</h2>
     <hr />
-    <div class="form-row">
+    <div class="form__row">
       <app-input formControlName="bank">
         Banco
       </app-input>
@@ -37,14 +48,14 @@
         CPF / CNPJ
       </app-input>
     </div>
-    <div class="form-row">
-      <div class="multiple-field">
+    <div class="form__row">
+      <div class="form__row--multiple">
         <app-input formControlName="agency" [mask]="'0000'">
           Agência
         </app-input>
         <app-input formControlName="agency_digit" [mask]="'0'"> </app-input>
       </div>
-      <div class="multiple-field">
+      <div class="form__row--multiple">
         <app-input formControlName="account_number" [mask]="'00000000'">
           Conta
         </app-input>
@@ -54,16 +65,20 @@
       <div class="custom-select">
         <label class="label"> Saque Automatico? </label>
         <ng-select
-          id="withdraw"
+          [displayKey]="'name'"
           [options]="withdrawOptions"
           [styleGuide]="selectStyleGuide"
           [formControl]="establishmentForm.get('automated_withdraw')"
         ></ng-select>
       </div>
     </div>
-    <div class="form-footer">
-      <button type="submit">Salvar</button>
+    <div class="form__actions">
+      <james-button
+        [type]="'submit'"
+        [text]="'Salvar'"
+        [class]="'primary'"
+        [disabled]="establishmentForm.invalid"
+      ></james-button>
     </div>
   </form>
-  {{ establishmentForm.value | json }}
 </div>

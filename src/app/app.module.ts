@@ -7,13 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgSelectModule } from 'ng-custom-select';
 import { NgxMaskModule } from 'ngx-mask';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { HomeComponent } from './pages/home/home.component';
 import { EstablishmentDetailsComponent } from './pages/establishment-details/establishment-details.component';
 
 import { EstablishmentCardComponent } from './components/establishment-card/establishment-card.component';
 import { InputComponent } from './components/input/input.component';
-
+import { ButtonComponent } from './components/button/button.component';
+import { AppConfigModule } from './appconfig.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +27,7 @@ import { InputComponent } from './components/input/input.component';
     EstablishmentDetailsComponent,
     EstablishmentCardComponent,
     InputComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +36,15 @@ import { InputComponent } from './components/input/input.component';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    FontAwesomeModule,
     NgxMaskModule.forRoot(),
+    AppConfigModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faArrowLeft);
+  }
+}

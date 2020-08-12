@@ -19,3 +19,15 @@ body {
   background-color: $background;
   box-sizing: border-box;
 }
+
+button {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
