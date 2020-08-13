@@ -1,11 +1,10 @@
 @import "../../../sass/variables";
 
 .establishment-details {
-  padding: 1.5rem;
+  padding: 3rem;
   background-color: $white;
   box-shadow: $box-shadow;
   border-radius: $br6;
-  padding: 30px;
 
   .form {
     &__row {
@@ -19,6 +18,11 @@
         grid-template-columns: 0.4fr 0.2fr;
         align-items: end;
         grid-gap: 10px;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-auto-flow: row;
       }
     }
 
@@ -57,6 +61,9 @@
     }
 
     .name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       > span {
         font-size: 1.8rem;
         font-weight: $font-bold;
@@ -64,9 +71,11 @@
       }
 
       > div {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         font-weight: $font-medium;
         color: $default-text;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
     }
   }
@@ -129,5 +138,9 @@
       width: 64px;
       object-fit: cover;
     }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
   }
 }

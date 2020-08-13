@@ -1,8 +1,9 @@
 .main-content {
-  margin: 3rem auto;
+  max-width: 90%;
+  margin: 1.5rem auto;
 
   @media (min-width: 780px) {
-    max-width: 100%;
+    margin: 3rem auto;
   }
 
   @media (min-width: 1600px) {

@@ -25,17 +25,24 @@
 
   & > div {
     align-self: center;
+    overflow: hidden;
   }
 
   &__name {
     color: $main-text;
     font-weight: $font-bold;
     font-size: 1.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__address {
     color: $default-text;
     font-size: 1.4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &:hover {
