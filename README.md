@@ -2,7 +2,7 @@
 
 This project was built based on this repository instructions `https://github.com/james-delivery/frontend-challenge`.
 
-## Running development enviroemnt
+## Running development enviroment
 
 1. Run `npm install` to install the project dependencies.
 2. Run `ng serve` for a dev server. 
