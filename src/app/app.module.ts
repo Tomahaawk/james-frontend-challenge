@@ -11,7 +11,7 @@ import {
   FontAwesomeModule,
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCamera } from '@fortawesome/free-solid-svg-icons';
 
 import { HomeComponent } from './pages/home/home.component';
 import { EstablishmentDetailsComponent } from './pages/establishment-details/establishment-details.component';
@@ -45,6 +45,6 @@ import { AppConfigModule } from './appconfig.module';
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faArrowLeft);
+    library.addIcons(faArrowLeft, faCamera);
   }
 }

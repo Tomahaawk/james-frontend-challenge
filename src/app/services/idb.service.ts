@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { openDB, IDBPDatabase } from 'idb';
-import { Stores } from '../model/db-stores.enum';
+import { Stores } from '../enums/db-stores.enum';
 
 @Injectable()
 export class IdbService {

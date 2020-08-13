@@ -3,7 +3,18 @@
     <button (click)="goBack()" type="button">
       <fa-icon [icon]="['fas', 'arrow-left']" size="2x"></fa-icon>
     </button>
-    <img [src]="establishment?.picture" alt="Establishment Logo" />
+    <div class="establishment-details__logo-edit">
+      <label for="img-replacer">
+        <fa-icon [icon]="['fas', 'camera']" size="3x"></fa-icon>
+      </label>
+      <input
+        id="img-replacer"
+        type="file"
+        accept=".png, .jpeg, .jpg"
+        (change)="handleFileChange($event.target.files)"
+      />
+      <img [src]="establishment?.picture" alt="Establishment Logo" />
+    </div>
     <div class="name">
       <span>{{ establishment?.name }}</span>
       <div>ID: {{ establishment?.id }}</div>
@@ -31,7 +42,7 @@
       <form-input formControlName="phone">
         Telefone
       </form-input>
-      <form-input formControlName="email">
+      <form-input formControlName="email" [errorMessages]="emailErrors">
         Email
       </form-input>
     </div>
@@ -44,7 +55,11 @@
       <form-input formControlName="account_type">
         Tipo de conta
       </form-input>
-      <form-input formControlName="cpf_cnpj" [mask]="cpfCnpjMask">
+      <form-input
+        formControlName="cpf_cnpj"
+        [mask]="cpfCnpjMask"
+        [errorMessages]="cpfCnpjErrors"
+      >
         CPF / CNPJ
       </form-input>
     </div>

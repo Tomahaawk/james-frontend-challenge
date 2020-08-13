@@ -14,7 +14,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private establishmetsService: EstablishmentsService,
     private router: Router
-  ) {}
+  ) {
+    this.establishmetsService.updateEstablishmentsList();
+  }
 
   ngOnInit(): void {
     this.establishmetsService.$establishments.subscribe((establishments) => {

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { IdbService } from './idb.service';
 import { Establishment } from 'src/app/model/establishment';
 import { openDB, deleteDB, wrap, unwrap, IDBPDatabase } from 'idb';
-import { Stores } from '../model/db-stores.enum';
+import { Stores } from '../enums/db-stores.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +52,7 @@ export class EstablishmentsService {
       transaction.store.add(item);
       transaction.done
         .then(() => console.log('success'))
-        .catch(() => console.log('failed trying to inset duplicated key'));
+        .catch(() => console.log('failed trying to insert duplicated key'));
     });
   }
 
@@ -61,11 +61,11 @@ export class EstablishmentsService {
     return establishments;
   }
 
-  // getEstablishmentById(id: string): Observable<Establishment> {
-  //   return this.http.get<Establishment>(
-  //     `https://my-json-server.typicode.com/james-delivery/frontend-challenge/establishments/${id}`
-  //   );
-  // }
+  updateEstablishmentsList(): void {
+    this.getAllValues().then((dbValues) => {
+      this.$establishments.next(dbValues);
+    });
+  }
 
   async getEstablishmentById(id: string): Promise<Establishment> {
     let transaction = this.db.transaction(Stores.ESTABLISHMENTS, 'readonly');

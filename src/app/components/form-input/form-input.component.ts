@@ -7,7 +7,7 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { FieldType } from '../../model/field-type.enum';
+import { FieldType } from '../../enums/field-type.enum';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -16,11 +16,12 @@ import { Subject } from 'rxjs';
   styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements ControlValueAccessor {
+  @Input() errorMessages: { key: string; value: string }[] = [];
   @Input() set type(value: FieldType) {
     this._type = value || FieldType.TEXT;
   }
   @Input() set mask(value: string | Subject<string>) {
-    if(typeof(value) !== 'string') {
+    if (typeof value !== 'string') {
       this._async = true;
     }
     this._mask = value;

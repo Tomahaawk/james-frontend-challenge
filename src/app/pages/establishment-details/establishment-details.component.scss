@@ -56,13 +56,6 @@
       }
     }
 
-    > img {
-      height: 64px;
-      width: 64px;
-      object-fit: cover;
-      margin-right: 2rem;
-    }
-
     .name {
       > span {
         font-size: 1.8rem;
@@ -94,5 +87,47 @@
     font-size: 1.4rem;
     color: $main-text;
     font-weight: $font-medium;
+  }
+
+  &__logo-edit {
+    position: relative;
+    margin-right: 2rem;
+    display: flex;
+
+    > input {
+      position: fixed;
+      left: -9999px;
+      height: 0;
+      width: 0;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    > label {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba($black, 0.3);
+      opacity: 0;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      .ng-fa-icon {
+        color: $white;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    > img {
+      height: 64px;
+      width: 64px;
+      object-fit: cover;
+    }
   }
 }

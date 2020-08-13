@@ -1,12 +1,19 @@
 <div class="form-group">
-  <label><ng-content></ng-content></label>
+  <label>
+    <ng-content></ng-content>
+  </label>
   <input
     [type]="_type"
     class="form-control"
     [formControl]="ngControl.control"
     [mask]="!_async ? _mask : (_mask | async)"
   />
-  <div class="invalid-feedback" *ngIf="ngControl.hasError('required')">
+  <div *ngIf="ngControl.hasError('required')">
     (*) Obrigatorio
   </div>
+  <ng-container *ngFor="let error of errorMessages">
+    <ng-container *ngIf="ngControl.hasError(error.key)">
+      <div class="">(*) {{ error.value }}</div>
+    </ng-container>
+  </ng-container>
 </div>
